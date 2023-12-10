@@ -6,6 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status , filters 
 from rest_framework.views import APIView
+from django.http import Http404
 # Create your views here.
 
 
@@ -107,6 +108,44 @@ class Cbv_List(APIView):
                 status=status.HTTP_201_CREATED
             )
         return Response(
-            serializer.data,
+            serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
+        )
+        
+# use rest framework, serializers and models -- method (GET , PUT , DELETE) (class based view)
+class Cbv_List_pk(APIView):
+    # get the primary kay
+    def get_object(self , pk):
+        try:
+            return Guest.objects.get(pk = pk)
+        except Guest.DoesNotExist:
+            raise Http404
+    # GET
+    def get(self, request , pk):
+        guest = self.get_object(pk)
+        serializer = GuestSerializer(guest)
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )
+    # PUT
+    def put(self, request , pk):
+        guest = self.get_object(pk)
+        serializer = GuestSerializer(guest , data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                serializer.data,
+                status=status.HTTP_200_OK
+            )
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    # DELETE
+    def delete(self, request , pk):
+        guest = self.get_object(pk)
+        guest.delete()
+        return Response(
+            status=status.HTTP_204_NO_CONTENT
         )

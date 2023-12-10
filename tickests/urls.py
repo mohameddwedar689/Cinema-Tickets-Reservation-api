@@ -12,5 +12,6 @@ urlpatterns = [
     path('rest/fbv_list/<int:pk>' , views.json_data_with_rest_model_pk),
     # url for two method (GET , POST) with using rest framework, models and serializers (Class Based View)
     path('rest/cbv_list/', views.Cbv_List.as_view()),
-
+    # url for two method (GET , PUT , DELETE) with using rest framework, models and serializers (Class Based View)
+    path('rest/cbv_list/<int:pk>', views.Cbv_List_pk.as_view()),
 ]
