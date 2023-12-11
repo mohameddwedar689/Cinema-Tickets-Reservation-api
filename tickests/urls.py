@@ -4,6 +4,8 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register('guests' , views.ViewSets_guest)
+router.register('movies' , views.ViewSets_movie)
+router.register('reservations' , views.ViewSets_reservation)
 
 urlpatterns = [
     # url that route to view return static json data (no rest , no model)

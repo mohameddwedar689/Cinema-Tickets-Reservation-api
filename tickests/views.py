@@ -199,3 +199,11 @@ class Generics_Pk(generics.RetrieveUpdateDestroyAPIView):
 class ViewSets_guest(viewsets.ModelViewSet):
     queryset = Guest.objects.all()
     serializer_class = GuestSerializer
+    
+class ViewSets_movie(viewsets.ModelViewSet):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer  
+    
+class ViewSets_reservation(viewsets.ModelViewSet):
+    queryset = Reservation.objects.all()
+    serializer_class = ReservationSerializer
