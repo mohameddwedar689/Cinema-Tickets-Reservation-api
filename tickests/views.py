@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status , filters 
 from rest_framework.views import APIView
 from django.http import Http404
+from rest_framework import generics , mixins
 # Create your views here.
 
 
@@ -149,3 +150,32 @@ class Cbv_List_pk(APIView):
         return Response(
             status=status.HTTP_204_NO_CONTENT
         )
+        
+        
+        
+        
+# use rest framework, serializers and models -- method (GET , POST) (mixins)
+class Mixins_list(mixins.ListModelMixin , mixins.CreateModelMixin , generics.GenericAPIView):
+    queryset = Guest.objects.all()
+    serializer_class = GuestSerializer
+    # GET
+    def get(self , request):
+        return self.list(request)
+    # POST
+    def post(self , request):
+        return self.create(request)
+    
+    
+# use rest framework, serializers and models -- method (GET , PUT , DELETE) (mixins)
+class Mixins_Pk(mixins.RetrieveModelMixin , mixins.UpdateModelMixin , mixins.DestroyModelMixin , generics.GenericAPIView):
+    queryset = Guest.objects.all()
+    serializer_class = GuestSerializer
+    # GET
+    def get(self , request , pk):
+        return self.retrieve(request)
+    # PUT
+    def put(self , request , pk):
+        return self.update(request)
+    # DELETE
+    def delete(self , request , pk):
+        return self.destroy(request)
