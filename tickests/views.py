@@ -179,3 +179,15 @@ class Mixins_Pk(mixins.RetrieveModelMixin , mixins.UpdateModelMixin , mixins.Des
     # DELETE
     def delete(self , request , pk):
         return self.destroy(request)
+    
+    
+    
+# use rest framework, serializers and models -- method (GET , POST) (Generics)
+class Generics_list(generics.ListCreateAPIView):
+    queryset = Guest.objects.all()
+    serializer_class = GuestSerializer
+# use rest framework, serializers and models -- method (GET , PUT , DELETE) (Generics)
+class Generics_Pk(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Guest.objects.all()
+    serializer_class = GuestSerializer
+

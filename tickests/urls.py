@@ -15,7 +15,11 @@ urlpatterns = [
     # url for three method (GET , PUT , DELETE) with using rest framework, models and serializers (Class Based View)
     path('rest/cbv_list/<int:pk>', views.Cbv_List_pk.as_view()),
     # url for two method (GET , POST) with using rest framework, models and serializers (mixins)
-    path('rest/mixins_list/' , views.Mixins_list.as_view()),
+    path('rest/mixins/' , views.Mixins_list.as_view()),
     # url for three method (GET , PUT , DELETE) with using rest framework, models and serializers (mixins)
-    path('rest/mixins_pk/<int:pk>' , views.Mixins_Pk.as_view()),
+    path('rest/mixins/<int:pk>' , views.Mixins_Pk.as_view()),
+    # url for two method (GET , POST) with using rest framework, models and serializers (Generics)
+    path('rest/generics/' , views.Generics_list.as_view()),
+    # url for three method (GET , PUT , DELETE) with using rest framework, models and serializers (Generics)
+    path('rest/generics/<int:pk>' , views.Generics_Pk.as_view()),
 ]
