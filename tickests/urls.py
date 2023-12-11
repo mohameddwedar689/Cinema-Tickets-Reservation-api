@@ -1,5 +1,9 @@
-from django.urls import path
+from django.urls import path , include
 from . import views 
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register('guests' , views.ViewSets_guest)
 
 urlpatterns = [
     # url that route to view return static json data (no rest , no model)
@@ -22,4 +26,6 @@ urlpatterns = [
     path('rest/generics/' , views.Generics_list.as_view()),
     # url for three method (GET , PUT , DELETE) with using rest framework, models and serializers (Generics)
     path('rest/generics/<int:pk>' , views.Generics_Pk.as_view()),
+    # url for three method (GET , POST , PUT , DELETE) with using rest framework, models and serializers (Viewsets)
+    path('rest/viewsets/' , include(router.urls)),
 ]

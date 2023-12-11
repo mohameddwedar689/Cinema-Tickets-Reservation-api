@@ -8,6 +8,7 @@ from rest_framework import status , filters
 from rest_framework.views import APIView
 from django.http import Http404
 from rest_framework import generics , mixins
+from rest_framework import viewsets
 # Create your views here.
 
 
@@ -191,3 +192,10 @@ class Generics_Pk(generics.RetrieveUpdateDestroyAPIView):
     queryset = Guest.objects.all()
     serializer_class = GuestSerializer
 
+
+
+
+# use rest framework, serializers and models -- method (GET , POST , PUT , DELETE) (Viewsets)
+class ViewSets_guest(viewsets.ModelViewSet):
+    queryset = Guest.objects.all()
+    serializer_class = GuestSerializer
