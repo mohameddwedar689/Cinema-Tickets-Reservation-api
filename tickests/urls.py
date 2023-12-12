@@ -30,4 +30,6 @@ urlpatterns = [
     path('rest/generics/<int:pk>' , views.Generics_Pk.as_view()),
     # url for three method (GET , POST , PUT , DELETE) with using rest framework, models and serializers (Viewsets)
     path('rest/viewsets/' , include(router.urls)),
+    # endpoint to find a movie (function based view)
+    path('fbv/find/' , views.find_movie),
 ]
