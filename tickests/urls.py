@@ -32,4 +32,6 @@ urlpatterns = [
     path('rest/viewsets/' , include(router.urls)),
     # endpoint to find a movie (function based view)
     path('fbv/find/' , views.find_movie),
+    # endpoint to make a new reservation
+    path('fbv/new/', views.new_reservation),
 ]
