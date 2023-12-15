@@ -9,6 +9,8 @@ from rest_framework.views import APIView
 from django.http import Http404
 from rest_framework import generics , mixins
 from rest_framework import viewsets
+from rest_framework.authentication import BasicAuthentication , TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 
@@ -187,10 +189,14 @@ class Mixins_Pk(mixins.RetrieveModelMixin , mixins.UpdateModelMixin , mixins.Des
 class Generics_list(generics.ListCreateAPIView):
     queryset = Guest.objects.all()
     serializer_class = GuestSerializer
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 # use rest framework, serializers and models -- method (GET , PUT , DELETE) (Generics)
 class Generics_Pk(generics.RetrieveUpdateDestroyAPIView):
     queryset = Guest.objects.all()
     serializer_class = GuestSerializer
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
 
